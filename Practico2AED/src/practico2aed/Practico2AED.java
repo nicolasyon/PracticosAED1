@@ -38,8 +38,9 @@ public class Practico2AED {
         //System.out.println("Minimo desordenado --> " + minvec1(vector1));
         //EJERCICIO 7 
         //System.out.println("Minimo ordenado --> " + minvecv1(vectorOrdenado));
-        //System.out.println("Maximo desde hasta --> " + maxvec(vector1, 5, 7));        
-        //System.out.println("Minimo desde hasta --> " + minvec(vector1, 5, 7));
+        //System.out.println("Maximo desde hasta --> " + maxvec(vector1, 5, 7));   
+        //EJERCICIO 8
+        //System.out.println("Minimo desde hasta --> " + minvecpos(vector1, 0, vector1.length-1));
         //EJERCICIO 9
         //System.out.println("Buscar elemento. Esta? --> " + buscarvec1(vector1, 10));
         //System.out.println("Buscar elemento desde hasta. Esta? --> " + buscarvec2(vector1, 3, 0, 3));
@@ -48,8 +49,9 @@ public class Practico2AED {
         // EJERCICIO 10
         //System.out.println("Buscar ORDENADA. Esta? --> " + buscarvecOrdenado(vectorOrdenado, 8));
         // EJERCICIO 11
-        System.out.println("Mergear vector. --> " + mergearVectores(vector1, vector2));
-
+        //System.out.println("Mergear vector. --> " + mergearVectores(vector1, vector2).toString());
+        System.out.println("Ordenar vector --> " + mostrarVector(vector1));
+        System.out.println("Ordenar vector --> " + mostrarVector(ordernarVector(vector1)));
     }
 
     // EJERCICIO 01
@@ -182,7 +184,7 @@ public class Practico2AED {
     public static int minvec(int[] vector, int desde, int hasta) {
         int minimo = 0;
 
-        for (int i = desde; i <= hasta; i++) {
+        for (int i = desde; i < hasta; i++) {
             if (i == desde) {
                 minimo = vector[desde];
             }
@@ -194,6 +196,28 @@ public class Practico2AED {
 
         return minimo;
     }
+    
+    //EJERCICIO 08
+    //Trae la posicion del menor valor del vector. El desde y el hasta estan incluidos. 
+    //El desde y el hasta estan contemplados dentro del largo del vector
+    public static int minvecpos(int[] vector, int desde, int hasta) {
+        int minimo = 0;
+        int valor = 0;
+        for (int i = desde; i <= hasta; i++) {
+            if (i == desde) {
+                minimo = desde;
+                valor = vector[desde];
+            }
+
+            if (valor > vector[i]) {
+                minimo = i;
+                valor = vector[i];
+            }
+        }
+
+        return minimo;
+    }
+    
 
     // EJERCICIO 09
     public static boolean buscarvec1(int[] vector, int elemento) {
@@ -296,5 +320,26 @@ public class Practico2AED {
         }
 
         return vectorResultante;
+    }
+    
+    //EJERCICIO 12 METODO DE ORDENAMIENTO DE SELECCION
+    public static int[] ordernarVector(int[] vector) {
+        for(int i = 0; i < vector.length; i++){
+            int posicion = minvecpos(vector, i, vector.length-1);
+            int auxiliar = vector[i];
+            vector[i] = vector[posicion];
+            vector[posicion] = auxiliar;
+        }
+        
+        return vector;
+    }
+    
+    public static String mostrarVector(int[] vector){        
+        String mostrar = "";
+        for(int i = 0; i < vector.length; i++){            
+            mostrar = mostrar + " - " + vector[i];
+        }
+        
+        return mostrar;
     }
 }
