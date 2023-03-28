@@ -16,32 +16,46 @@ public class Practico3AED {
     public static void main(String[] args) {
         int[] vector1 = {6, 3, 0, 85, 1, 7, 2, 4, 8};
         int[] vectorOrdenado = {2, 4, 6, 8, 10};
-        int[] vector2 = {10, 10, 10};
+        int[] vector2 = {10, 2, 10};
         int[] vector3 = {2, 3, 4, 5, 6, 7};
         int[] vector4 = {2, 3, 4, 5, 6, 7};
 
         //RECURSIVIDAD!
         //EJERCICIO 1
         //FACTORIAL
-        System.out.println("Factorial--> " + factorial(4));
+        //System.out.println("Factorial--> " + factorial(4));
         //POTENCIA
-        System.out.println("Potenia --> " + potencia(2, 3));
-        mostrarVectorRecursivo(vector1);
+        //System.out.println("Potenia --> " + potencia(2, 3));
+        //mostrarVectorRecursivo(vector1);
 
-        //EJERCICIO 3
-        System.out.println("Invertir palabra --> " + invertir01("hola"));
-        System.out.println("Invertir palabra --> " + invertir02("hola"));
-
+        //EJERCICIO 03
+        //System.out.println("Invertir palabra --> " + invertir01("hola"));
+        //System.out.println("Invertir palabra --> " + invertir02("hola"));
+        
+        //EJERCICIO 04
+        System.out.println("Sumar digitos --> " + sumarDigitos(123));
+        
         //EJERCICIO 05
-        System.out.println("Suma vector --> " + suma(vector2));
+        //System.out.println("Suma vector --> " + suma(vector2));
+        
+        // EJERCICIO 07
+        System.out.println("Multiplicar vector --> " + multiplicarVector(vector2));
+        
+        //EJERCICIO 08
+        //System.out.println("Mayor numero del vector --> " + mayor(vector1));
+        //System.out.println("Minimo numero del vector --> " + minimo(vector1));
 
-        // EJERCICIO 08
-        System.out.println("Mayor numero del vector --> " + mayor(vector1));
-        System.out.println("Minimo numero del vector --> " + minimo(vector1));
-
-        System.out.println("Existe el numero --> " + existe(vector1, 85));
+        //EJERCICIO 09
+        //System.out.println("Existe el numero --> " + existe(vector1, 85));
+        
+        //EJERCICIO 10
+        System.out.println("Resultado --> 20 ");
+        
+        //EJERCICIO 11
+        System.out.println("Resultado --> 20 ");
     }
 
+    //EJERCICIO 01
     public static int factorial(int n) {
         if (n == 1) {
             return 1;
@@ -70,6 +84,7 @@ public class Practico3AED {
         mostrarVectorRecursivo(vector, i + 1);
     }
 
+    //EJERCICIO 03
     public static String invertir01(String palabra) {
         return invertirPalabra02(palabra, 0);
     }
@@ -94,6 +109,24 @@ public class Practico3AED {
         }
     }
 
+    //EJERCICIO 04 - preguntar al profe sobre el casteo
+    // el -48 sale de aca https://www.scaler.com/topics/char-to-int-in-java/
+    public static int sumarDigitos(int numero){
+        return sumarDigitos(Integer.toString(numero), 0);
+    }
+    public static int sumarDigitos(String numero, int posicion){
+        int length = numero.length() - 1;
+        if(posicion == length){
+            char valorS = numero.charAt(posicion);
+            int valor = valorS -48;
+            return valor;
+        }
+        
+        return (Integer.valueOf(numero.charAt(posicion)) - 48) + sumarDigitos(numero, posicion + 1);
+    }
+    
+    
+    //EJERCICIO 05
     public static int suma(int[] vector) {
         return suma(vector, 0);
     }
@@ -107,7 +140,22 @@ public class Practico3AED {
 
         return vector[posicion] + suma(vector, posicion + 1);
     }
+    
+    //EJERCICIO 07
+    public static int multiplicarVector(int[] vector){
+        return multiplicarVector(vector, 0);
+    }
+    
+    public static int multiplicarVector(int[] vector, int posicion){
+        
+        if(posicion == vector.length - 1){
+            return vector[posicion];
+        }
+        
+        return vector[posicion] * multiplicarVector(vector, posicion + 1);
+    }
 
+    //EJERCICIO 08
     public static int mayor(int[] vector) {
         return mayor(vector, 0);
     }
@@ -144,6 +192,7 @@ public class Practico3AED {
         return minimo;
     }
 
+    //EJERCICIO 09
     public static boolean existe(int[] vector, int numero) {
         return existe(vector, numero, 0, vector.length - 1);
     }
