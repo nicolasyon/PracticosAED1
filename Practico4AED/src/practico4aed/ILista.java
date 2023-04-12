@@ -105,5 +105,7 @@ public interface ILista {
     public int largoR(NodoLista nodo);
 
     public void borrarR(NodoLista nodo, int x);
+    
+    public void mostrarRECLista(Lista lista);
 
 }
